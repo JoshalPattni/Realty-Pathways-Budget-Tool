@@ -44,24 +44,10 @@ function calculateTotalExpenses() {
         tips.appendChild(tip2);
     }
 
-    const pieChart = document.getElementById('pieChart').getContext('2d');
-    new Chart(pieChart, {
-        type: 'pie',
-        data: {
-            labels: ['Expenses', 'Remaining Funds'],
-            datasets: [{
-                label: 'Budget Overview',
-                data: [totalMonthlyExpenses, remainingFunds],
-                backgroundColor: ['#ff6384', '#36a2eb']
-            }]
-        },
-        options: {
-            title: {
-                display: true,
-                text: 'Budget Overview'
-            }
-        }
-    });
+    // Add graphs and tables here
+    const graphsDiv = document.getElementById('graphs');
+    const tablesDiv = document.getElementById('tables');
+    // Add graphs and tables based on user's expenses, income, etc.
 }
 
 function calculateMonthsToSave() {
