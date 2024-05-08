@@ -2,65 +2,54 @@ body {
     font-family: Arial, sans-serif;
     background-color: #ffffff;
     color: #000000;
-    margin: 0;
-    padding: 0;
 }
 
-header {
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.title {
     background-color: #000000;
     color: #ffffff;
-    text-align: center;
-    padding: 20px 0;
-}
-
-h1 {
-    margin: 0;
-}
-
-main {
     padding: 20px;
-    text-align: center;
+}
+
+.steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .step {
-    margin-bottom: 40px;
-    text-align: left;
-    display: inline-block;
-    width: 100%;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #000000;
+    background-color: #ffffff;
 }
 
-p {
-    text-align: left;
+.step h2 {
+    margin-top: 0;
 }
 
-label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-input[type="number"] {
-    width: 100%;
+.step input[type="number"],
+.step input[type="text"],
+.step button {
+    margin: 5px;
     padding: 8px;
-    margin-bottom: 10px;
+    font-size: 16px;
 }
 
 button {
-    padding: 10px 20px;
-    background-color: #000000;
+    background-color: #0000ff;
     color: #ffffff;
     border: none;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #1e90ff;
-}
-
-/* Adjustments for step 2 */
-#expenses {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    background-color: #000080;
 }
 
 table {
