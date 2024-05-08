@@ -12,24 +12,28 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Step 3: What You're Left With
     const leftoverResult = document.getElementById("leftoverResult");
+    const savingsPercentageInput = document.getElementById("savingsPercentage");
+    const calculateSavingsButton = document.getElementById("calculateSavings");
+    const totalSavingsResult = document.getElementById("totalSavingsResult");
 
-    // Step 4: Calculate Savings Target
+    // Step 4: Calculate Your Savings Target
     const monthlySavingsTargetInput = document.getElementById("monthlySavingsTarget");
     const propertyCostInput = document.getElementById("propertyCost");
     const calculateTimeToSaveButton = document.getElementById("calculateTimeToSave");
     const timeToSaveResult = document.getElementById("timeToSaveResult");
 
     // Step 5: Savings Bucket
-    const monthlySavingsInput = document.getElementById("monthlySavings");
-    const fillBucketButton = document.getElementById("fillBucket");
+    const month1Input = document.getElementById("month1");
+    const calculateBucketButton = document.getElementById("calculateBucket");
     const bucketStatus = document.getElementById("bucketStatus");
 
     // Event listeners
     calculateMonthlyIncomeButton.addEventListener("click", calculateMonthlyIncome);
     addExpenseButton.addEventListener("click", addExpense);
     calculateTotalExpensesButton.addEventListener("click", calculateTotalExpenses);
+    calculateSavingsButton.addEventListener("click", calculateTotalSavings);
     calculateTimeToSaveButton.addEventListener("click", calculateTimeToSave);
-    fillBucketButton.addEventListener("click", fillBucket);
+    calculateBucketButton.addEventListener("click", calculateBucket);
 
     // Function to calculate monthly income
     function calculateMonthlyIncome() {
@@ -76,13 +80,26 @@ document.addEventListener("DOMContentLoaded", function() {
         leftoverResult.textContent = `What You're Left With: £${leftover.toFixed(2)}`;
     }
 
+    // Function to calculate total savings
+    function calculateTotalSavings() {
+        const savingsPercentage = parseFloat(savingsPercentageInput.value);
+        const leftover = parseFloat(leftoverResult.textContent.split("£")[1]);
+        if (!isNaN(savingsPercentage)) {
+            const totalSavings = (savingsPercentage / 100) * leftover;
+            totalSavingsResult.textContent = `Total Monthly Savings: £${totalSavings.toFixed(2)}`;
+        } else {
+            totalSavingsResult.textContent = "Please enter a valid savings percentage.";
+        }
+    }
+
     // Function to calculate time to save
     function calculateTimeToSave() {
         const monthlySavingsTarget = parseFloat(monthlySavingsTargetInput.value);
         const propertyCost = parseFloat(propertyCostInput.value);
         if (!isNaN(monthlySavingsTarget) && !isNaN(propertyCost)) {
-            const depositPercentage = confirm("Are you buying the property to live in?") ? 0.1 : 0.2;
-            const depositAmount = propertyCost * depositPercentage;
+            const residentialDeposit = propertyCost * 0.1;
+            const buyToLetDeposit = propertyCost * 0.2;
+            const depositAmount = confirm("Are you buying the property to live in?") ? residentialDeposit : buyToLetDeposit;
             const monthsToSave = Math.ceil(depositAmount / monthlySavingsTarget);
             timeToSaveResult.textContent = `Months to Save for Deposit: ${monthsToSave}`;
         } else {
@@ -90,15 +107,10 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // Function to fill the savings bucket
-    function fillBucket() {
-        const monthlySavings = parseFloat(monthlySavingsInput.value);
-        if (!isNaN(monthlySavings)) {
-            let bucketPercentage = parseFloat(bucketStatus.textContent);
-            bucketPercentage = Math.min(bucketPercentage + (monthlySavings / 1000), 100); // Assuming the bucket represents 1000 units
-            bucketStatus.textContent = `Bucket filled: ${bucketPercentage.toFixed(2)}%`;
-        } else {
-            alert("Please enter a valid amount for Monthly Savings.");
-        }
+    // Function to calculate the savings bucket
+    function calculateBucket() {
+        // Calculate savings progress and update the bucket status
+        // You can implement this part based on your desired bucket filling logic
     }
 });
+
