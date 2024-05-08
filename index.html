@@ -3,46 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Realty Pathways Budget Saver Tool</title>
+    <title>Budget Saving Tool</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <header>
-        <h1>Realty Pathways Budget Saver Tool</h1>
-        <p>Welcome to the Budget Saving Tool. Use our budget worksheet to calculate your monthly spending and determine your financial goals.</p>
-    </header>
-    <section id="budgetWorksheet">
-        <h2>How Much Do You Spend in a Month?</h2>
-        <p>Enter your monthly expenses below to calculate your total spending.</p>
-        <label for="totalMonthlyIncome">Total Monthly Income (£):</label>
-        <input type="number" id="totalMonthlyIncome" placeholder="Enter your total monthly income">
-        <div id="expenses">
-            <div class="expense">
-                <input type="text" class="expense-description" placeholder="Expense description">
-                <input type="number" class="expense-amount" placeholder="Amount">
+    <div class="container">
+        <h1>Budget Saving Tool</h1>
+        
+        <!-- Monthly Budget Worksheet -->
+        <div class="section">
+            <h2>How Much Do You Spend in a Month?</h2>
+            <p>Enter your monthly expenses below to calculate your total spending.</p>
+            <div id="monthlyBudgetWorksheet">
+                <label for="totalMonthlyIncome">Total Monthly Income (£):</label>
+                <input type="number" id="totalMonthlyIncome" step="0.01">
+                <div id="expenses"></div>
+                <button onclick="addExpense()">Add Expense</button>
+                <button onclick="calculateTotalExpenses()">Calculate Total Expenses</button>
             </div>
-            <!-- Additional expenses will be added dynamically here -->
+            <div id="output"></div>
+            <div id="summary"></div>
         </div>
-        <button onclick="addExpense()">Add Expense</button>
-        <button onclick="calculateTotalExpenses()">Calculate Total Expenses</button>
-    </section>
-    <section id="calculator">
-        <h2>Budget Saving Calculator</h2>
-        <p>Enter your monthly savings target and the cost of your dream property to calculate how long it will take to save up.</p>
-        <label for="monthlySavings">Monthly Savings Target (£):</label>
-        <input type="number" id="monthlySavings" placeholder="Enter your monthly savings target">
-        <label for="propertyCost">Property Cost (£):</label>
-        <input type="number" id="propertyCost" placeholder="Enter the cost of the property">
-        <button onclick="calculateMonthsToSave()">Calculate</button>
-        <div id="output"></div>
-    </section>
-    <section id="summary" style="display: none;">
-        <h2>Summary</h2>
-        <div id="tips"></div>
-        <div id="graphs"></div>
-        <div id="tables"></div>
-    </section>
+
+        <!-- Budget Saving Calculator -->
+        <div class="section">
+            <h2>Budget Saving Calculator</h2>
+            <p>Enter your monthly savings target and the cost of your dream property to calculate how long it will take to save up.</p>
+            <label for="monthlySavingsTarget">Monthly Savings Target (£):</label>
+            <input type="number" id="monthlySavingsTarget" step="0.01">
+            <label for="propertyCost">Property Cost (£):</label>
+            <input type="number" id="propertyCost" step="0.01">
+            <button onclick="calculateMonthsToSave()">Calculate</button>
+            <div id="calculatedResults"></div>
+            <div id="solution"></div>
+        </div>
+
+        <!-- Savings Bucket -->
+        <div id="savingsBucket">
+            <h2>Savings Bucket</h2>
+            <div id="bucketContainer">
+                <div id="bucket"></div>
+                <div id="water"></div>
+            </div>
+            <p id="bucketStatus">Your savings bucket is currently empty.</p>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
