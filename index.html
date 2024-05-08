@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realty Pathways Budget Saver Tool</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Realty Pathways Budget Saver Tool</h1>
+        <p>Welcome to the Budget Saving Tool. Use our budget worksheet to calculate your monthly spending and determine your financial goals.</p>
+    </header>
+    <section id="budgetWorksheet">
+        <h2>Monthly Budget Worksheet</h2>
+        <p>Use our budget worksheet to calculate where you are spending your money. Once you have a better idea of your current spending habits, you can make adjustments to reach your financial goals.</p>
+        <label for="expense1">Expense 1:</label>
+        <input type="number" id="expense1" placeholder="Enter amount for Expense 1">
+        <label for="expense2">Expense 2:</label>
+        <input type="number" id="expense2" placeholder="Enter amount for Expense 2">
+        <!-- Add more inputs as needed -->
+    </section>
+    <section id="calculator">
+        <h2>Budget Saving Calculator</h2>
+        <p>Fill out the details below to calculate your potential home buying power.</p>
+        <label for="annualIncome">Gross Annual Income (before tax):</label>
+        <input type="number" id="annualIncome" placeholder="Enter your gross annual income">
+        <label for="carLoans">Car Loans:</label>
+        <input type="number" id="carLoans" placeholder="Enter your car loan amount">
+        <!-- Add more inputs as needed -->
+        <button onclick="calculateResults()">Calculate</button>
+        <div id="output"></div>
+    </section>
+    <script src="script.js"></script>
+</body>
+</html>
