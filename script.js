@@ -1,14 +1,3 @@
-function addExpense() {
-    const expensesDiv = document.getElementById('expenses');
-    const newExpenseDiv = document.createElement('div');
-    newExpenseDiv.classList.add('expense');
-    newExpenseDiv.innerHTML = `
-        <input type="text" class="expense-description" placeholder="Expense description">
-        <input type="number" class="expense-amount" placeholder="Amount">
-    `;
-    expensesDiv.appendChild(newExpenseDiv);
-}
-
 function calculateTotalExpenses() {
     const expenses = document.querySelectorAll('.expense');
     let totalMonthlyExpenses = 0;
@@ -44,21 +33,33 @@ function calculateTotalExpenses() {
         tips.appendChild(tip2);
     }
 
-    // Add graphs and tables here
-    const graphsDiv = document.getElementById('graphs');
-    const tablesDiv = document.getElementById('tables');
-    // Add graphs and tables based on user's expenses, income, etc.
-}
+    const pieChartCanvas = document.getElementById('pieChart');
+    const pieChartData = {
+        labels: ['Total Monthly Expenses', 'Remaining Funds'],
+        datasets: [{
+            label: 'Budget Overview',
+            data: [totalMonthlyExpenses, remainingFunds],
+            backgroundColor: ['#ff6384', '#36a2eb']
+        }]
+    };
+    const pieChartOptions = {
+        title: {
+            display: true,
+            text: 'Budget Overview'
+        }
+    };
+    new Chart(pieChartCanvas, {
+        type: 'pie',
+        data: pieChartData,
+        options: pieChartOptions
+    });
 
-function calculateMonthsToSave() {
-    const monthlySavings = parseFloat(document.getElementById('monthlySavings').value);
-    const propertyCost = parseFloat(document.getElementById('propertyCost').value);
-    const monthsToSave = propertyCost / monthlySavings;
+    const monthsToSave = remainingFunds / monthlySavings;
+    const yearsToSave = Math.floor(monthsToSave / 12);
+    const remainingMonths = monthsToSave % 12;
+    const monthsString = yearsToSave > 0 ? `${yearsToSave} years and ${remainingMonths} months` : `${remainingMonths} months`;
 
-    const output = document.getElementById('output');
-    output.innerHTML = `
-        <h2>Calculated Results</h2>
-        <p>Monthly Savings Needed for Property: £${monthlySavings.toFixed(2)}</p>
-        <p>Months to Save for Dream Property: ${monthsToSave.toFixed(2)}</p>
-    `;
+    const monthsToSaveOutput = document.createElement('p');
+    monthsToSaveOutput.textContent = `Months to Save for Dream Property: ${monthsString}`;
+    output.appendChild(monthsToSaveOutput);
 }
