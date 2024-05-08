@@ -8,56 +8,56 @@
 </head>
 <body>
     <header>
-        <img src="logo.png" alt="Realty Pathways Logo">
-        <h1>Budget Saving Tool</h1>
+        <h1>Step 1: Monthly Income</h1>
     </header>
     <section id="step1">
-        <h2>Step 1: Calculate Your Monthly Income</h2>
-        <label for="totalIncome">Total Monthly Income (£):</label>
-        <input type="number" id="totalIncome">
+        <label for="annualIncome">Annual Income (£):</label>
+        <input type="number" id="annualIncome">
+        <button onclick="calculateMonthlyIncome()">Calculate Monthly Income</button>
+        <div id="monthlyIncome"></div>
     </section>
-    <section id="step2">
-        <h2>Step 2: Monthly Expenses</h2>
-        <p>Enter your monthly expenses below:</p>
-        <div id="expensesList">
-            <!-- Expenses will be dynamically added here -->
-        </div>
+
+    <section id="step2" style="display: none;">
+        <header>
+            <h1>Step 2: Monthly Expenses</h1>
+        </header>
+        <section id="monthlyExpenses">
+            <!-- Dynamic content for monthly expenses will be added here -->
+        </section>
         <button onclick="addExpense()">Add Expense</button>
         <button onclick="calculateTotalExpenses()">Calculate Total Expenses</button>
+        <div id="totalExpenses"></div>
     </section>
-    <section id="step3">
-        <h2>Step 3: Savings Goals</h2>
-        <p>Enter your savings goals below:</p>
-        <label for="emergencyFund">Emergency Fund (£):</label>
-        <input type="number" id="emergencyFund">
-        <button onclick="calculateTotalSavings()">Calculate Total Savings</button>
+
+    <section id="step3" style="display: none;">
+        <header>
+            <h1>Step 3: Savings Target</h1>
+        </header>
+        <label for="monthlySavingsTarget">Monthly Savings Target (£):</label>
+        <input type="number" id="monthlySavingsTarget">
+        <button onclick="calculateSavingsTarget()">Calculate Savings Target</button>
+        <div id="savingsTarget"></div>
     </section>
-    <section id="step4">
-        <h2>Step 4: Calculate Your Savings Target</h2>
-        <label for="savingsTarget">Monthly Savings Target (£):</label>
-        <input type="number" id="savingsTarget">
-        <label for="propertyCost">Property Cost (£):</label>
-        <input type="number" id="propertyCost">
-        <button onclick="calculateSavingsTime()">Calculate Time to Save</button>
+
+    <section id="step4" style="display: none;">
+        <header>
+            <h1>Step 4: Property Details</h1>
+        </header>
+        <!-- Property details form will be added here -->
+        <button onclick="calculateMonthsToSave()">Calculate Months to Save</button>
+        <div id="monthsToSave"></div>
     </section>
-    <section id="step5">
-        <h2>Step 5: Tips to Accelerate Savings</h2>
-        <p>Here are some tips to reduce the time needed to save:</p>
-        <ul>
-            <li>Reduce unnecessary expenses</li>
-            <li>Increase income through side hustles</li>
-            <li>Invest savings in high-yield accounts</li>
-            <!-- Add more tips as needed -->
-        </ul>
+
+    <section id="step5" style="display: none;">
+        <header>
+            <h1>Step 5: Savings Bucket</h1>
+        </header>
+        <div id="savingsBucket">
+            <!-- Savings bucket graphic will be displayed here -->
+        </div>
     </section>
-    <section id="step6">
-        <h2>Step 6: Savings Bucket</h2>
-        <div id="bucket"></div>
-        <p id="bucketStatus">Bucket filled: 0%</p>
-        <label for="monthlySavings">Monthly Savings (£):</label>
-        <input type="number" id="monthlySavings">
-        <button onclick="fillBucket()">Fill Bucket</button>
-    </section>
+
     <script src="script.js"></script>
 </body>
 </html>
+
