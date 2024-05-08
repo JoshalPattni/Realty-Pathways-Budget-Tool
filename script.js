@@ -56,10 +56,21 @@ function calculateTotalExpenses() {
 
     const monthsToSave = remainingFunds / monthlySavings;
     const yearsToSave = Math.floor(monthsToSave / 12);
-    const remainingMonths = monthsToSave % 12;
+    const remainingMonths = Math.round(monthsToSave % 12);
     const monthsString = yearsToSave > 0 ? `${yearsToSave} years and ${remainingMonths} months` : `${remainingMonths} months`;
 
     const monthsToSaveOutput = document.createElement('p');
     monthsToSaveOutput.textContent = `Months to Save for Dream Property: ${monthsString}`;
     output.appendChild(monthsToSaveOutput);
+
+    // Customized solutions based on spending habits
+    const solutionDiv = document.createElement('div');
+    solutionDiv.innerHTML = `
+        <h2>Solutions</h2>
+        <p>Consider reducing spending on non-essential items to increase savings.</p>
+        <p>For example, reducing monthly spending on dining out, entertainment subscriptions, or unnecessary purchases can significantly boost your savings.</p>
+        <p>Here's a visualization of how cutting back on these expenses can impact your budget:</p>
+        <img src="before_after.png" alt="Before and After" style="max-width: 100%;">
+    `;
+    output.appendChild(solutionDiv);
 }
