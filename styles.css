@@ -1,22 +1,27 @@
+body {
+    background-color: #f0f0f0;
+    color: #333;
+    font-family: Arial, sans-serif;
+}
+
 .container {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #f0f0f0;
-    font-family: Arial, sans-serif;
-}
-
-.step {
-    display: none;
 }
 
 h1 {
     text-align: center;
-    margin-bottom: 20px;
+    color: #000;
 }
 
 h2 {
-    margin-top: 20px;
+    color: #000;
+}
+
+.step {
+    display: none;
+    margin-bottom: 20px;
 }
 
 input[type="number"],
@@ -44,7 +49,9 @@ button:hover {
 #bucket {
     width: 200px;
     height: 300px;
-    background-color: #ccc;
+    background-image: url('bucket.png'); /* Replace with your bucket image */
+    background-size: contain;
+    background-repeat: no-repeat;
     margin-top: 20px;
     position: relative;
 }
@@ -52,13 +59,4 @@ button:hover {
 #bucketStatus {
     text-align: center;
     margin-top: 10px;
-}
-
-#water {
-    background-color: blue;
-    width: 100%;
-    height: 0;
-    position: absolute;
-    bottom: 0;
-    left: 0;
 }
