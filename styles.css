@@ -1,6 +1,7 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
+    background-color: #1a1a1a;
+    color: #fff;
     margin: 0;
     padding: 0;
 }
@@ -12,19 +13,19 @@ body {
 }
 
 .title {
-    color: #000;
+    color: #fff;
     text-align: center;
 }
 
 .subtitle {
-    color: #000;
+    color: #fff;
     text-align: center;
     font-weight: normal;
 }
 
 .step {
-    background-color: #fff;
-    border: 1px solid #ccc;
+    background-color: #333;
+    border: 1px solid #fff;
     border-radius: 5px;
     padding: 20px;
     margin-bottom: 20px;
@@ -37,7 +38,7 @@ body {
 }
 
 button {
-    background-color: #3498db;
+    background-color: #4CAF50;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -46,5 +47,5 @@ button {
 }
 
 button:hover {
-    background-color: #2980b9;
+    background-color: #45a049;
 }
