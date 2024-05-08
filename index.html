@@ -1,68 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Realty Pathways - Budget Saving Tool</title>
+    <title>Realty Pathways Budget Saving Tool</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
     <header>
-        <h1>Realty Pathways</h1>
-        <h2>Budget Saving Tool</h2>
+        <h1>Realty Pathways Budget Saving Tool</h1>
     </header>
-    <section id="step1" class="step">
-        <h3>Step 1: Calculate Your Monthly Income</h3>
-        <label for="totalMonthlyIncome">Total Monthly Income (£):</label>
-        <input type="number" id="totalMonthlyIncome">
-    </section>
+    <main>
+        <section id="step1" class="step">
+            <h2>Step 1: Calculate Your Monthly Income</h2>
+            <label for="annualIncome">Total Annual Income (£):</label>
+            <input type="number" id="annualIncome" placeholder="Enter your annual income">
+            <button id="calculateMonthlyIncome">Calculate Monthly Income</button>
+            <div id="monthlyIncomeResult"></div>
+        </section>
 
-    <section id="step2" class="step">
-        <h3>Step 2: Monthly Expenses</h3>
-        <div id="expenses">
-            <!-- Expenses will be added dynamically here -->
-        </div>
-        <button id="addExpense">Add Expense</button>
-        <button id="calculateTotalExpenses">Calculate Total Expenses</button>
-    </section>
+        <section id="step2" class="step">
+            <h2>Step 2: Monthly Expenses</h2>
+            <div id="expenses">
+                <!-- Expenses inputs will be added dynamically here -->
+            </div>
+            <button id="addExpense">Add Expense</button>
+            <button id="calculateTotalExpenses">Calculate Total Expenses</button>
+            <div id="totalExpensesResult"></div>
+        </section>
 
-    <section id="step3" class="step">
-        <h3>Step 3: Savings Goals</h3>
-        <label for="emergencyFund">Emergency Fund (£):</label>
-        <input type="number" id="emergencyFund">
-        <button id="calculateTotalSavings">Calculate Total Savings</button>
-    </section>
+        <section id="step3" class="step">
+            <h2>Step 3: Savings Goals</h2>
+            <label for="emergencyFund">Emergency Fund (£):</label>
+            <input type="number" id="emergencyFund" placeholder="Enter your emergency fund target">
+            <button id="calculateTotalSavings">Calculate Total Savings</button>
+            <div id="totalSavingsResult"></div>
+        </section>
 
-    <section id="step4" class="step">
-        <h3>Step 4: Calculate Your Savings Target</h3>
-        <label for="monthlySavingsTarget">Monthly Savings Target (£):</label>
-        <input type="number" id="monthlySavingsTarget">
-        <label for="propertyCost">Property Cost (£):</label>
-        <input type="number" id="propertyCost">
-        <button id="calculateTimeToSave">Calculate Time to Save</button>
-    </section>
+        <section id="step4" class="step">
+            <h2>Step 4: Calculate Your Savings Target</h2>
+            <label for="monthlySavingsTarget">Monthly Savings Target (£):</label>
+            <input type="number" id="monthlySavingsTarget" placeholder="Enter your monthly savings target">
+            <label for="propertyCost">Property Cost (£):</label>
+            <input type="number" id="propertyCost" placeholder="Enter the property cost">
+            <button id="calculateTimeToSave">Calculate Time to Save</button>
+            <div id="timeToSaveResult"></div>
+        </section>
 
-    <section id="step5" class="step">
-        <h3>Step 5: Tips to Accelerate Savings</h3>
-        <p>Here are some tips to reduce the time needed to save:</p>
-        <ul>
-            <li>Reduce unnecessary expenses</li>
-            <li>Increase income through side hustles</li>
-            <li>Invest savings in high-yield accounts</li>
-        </ul>
-    </section>
-
-    <section id="step6" class="step">
-        <h3>Step 6: Savings Bucket</h3>
-        <p>Bucket filled: <span id="bucketPercentage">0.00%</span></p>
-        <label for="monthlySavings">Monthly Savings (£):</label>
-        <input type="number" id="monthlySavings">
-        <button id="fillBucket">Fill Bucket</button>
-    </section>
-
+        <section id="step5" class="step">
+            <h2>Step 5: Savings Bucket</h2>
+            <label for="monthlySavings">Monthly Savings (£):</label>
+            <input type="number" id="monthlySavings" placeholder="Enter your monthly savings">
+            <button id="fillBucket">Fill Bucket</button>
+            <div id="bucketStatus"></div>
+        </section>
+    </main>
     <script src="script.js"></script>
 </body>
-
 </html>
