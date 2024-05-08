@@ -33,45 +33,46 @@ function calculateTotalExpenses() {
     summary.style.display = 'block';
     const tips = document.getElementById('tips');
     tips.innerHTML = '';
-    if (totalMonthlyExpenses > totalMonthlyIncome / 2) {
-        const tip1 = document.createElement('p');
-        tip1.textContent = 'Consider reducing discretionary spending on non-essential items.';
-        tips.appendChild(tip1);
+    if (totalMonthlyExpenses > totalMonthlyIncome) {
+        const tip = document.createElement('p');
+        tip.textContent = 'Your expenses exceed your income. Consider cutting back on non-essential expenses.';
+        tips.appendChild(tip);
+    } else {
+        const tip = document.createElement('p');
+        tip.textContent = 'You have a surplus in your budget. Consider allocating more towards savings or investments.';
+        tips.appendChild(tip);
     }
-    if (remainingFunds < totalMonthlyIncome / 4) {
-        const tip2 = document.createElement('p');
-        tip2.textContent = 'Look for additional income sources or consider reducing fixed expenses.';
-        tips.appendChild(tip2);
-    }
+    const chart = document.getElementById('chart');
+    chart.style.display = 'block';
+}
 
-    const pieChartCanvas = document.getElementById('pieChart');
-    const pieChartData = {
-        labels: ['Total Monthly Expenses', 'Remaining Funds'],
-        datasets: [{
-            label: 'Budget Overview',
-            data: [totalMonthlyExpenses, remainingFunds],
-            backgroundColor: ['#ff6384', '#36a2eb']
-        }]
-    };
-    const pieChartOptions = {
-        title: {
-            display: true,
-            text: 'Budget Overview'
-        }
-    };
-    new Chart(pieChartCanvas, {
-        type: 'pie',
-        data: pieChartData,
-        options: pieChartOptions
-    });
+function calculateMonthsToSave() {
+    const monthlySavingsTarget = parseFloat(document.getElementById('monthlySavingsTarget').value);
+    const propertyCost = parseFloat(document.getElementById('propertyCost').value);
+    const monthsToSave = propertyCost / monthlySavingsTarget;
 
-    const monthsToSave = remainingFunds / monthlySavings;
-    const yearsToSave = Math.floor(monthsToSave / 12);
-    const remainingMonths = Math.round(monthsToSave % 12);
-    const monthsString = yearsToSave > 0 ? `${yearsToSave} years and ${remainingMonths} months` : `${remainingMonths} months`;
+    const calculatedResults = document.getElementById('calculatedResults');
+    calculatedResults.innerHTML = `
+        <h2>Calculated Results</h2>
+        <p>Monthly Savings Needed for Property: £${monthlySavingsTarget.toFixed(2)}</p>
+        <p>Months to Save for Dream Property: ${monthsToSave.toFixed(2)}</p>
+    `;
 
+    const solution = document.getElementById('solution');
+    solution.style.display = 'block';
+    const bucketContainer = document.getElementById('bucketContainer');
+    bucketContainer.style.display = 'block';
+
+    // Calculate remaining months
+    let remainingMonths = Math.floor(monthsToSave);
+    let remainingYears = Math.floor(remainingMonths / 12);
+    remainingMonths = remainingMonths % 12;
+
+    // Display results
+    const monthsString = remainingMonths === 1 ? 'month' : 'months';
+    const yearsString = remainingYears === 1 ? 'year' : 'years';
     const monthsToSaveOutput = document.createElement('p');
-    monthsToSaveOutput.textContent = `Months to Save for Dream Property: ${monthsString}`;
+    monthsToSaveOutput.textContent = `You need to save for ${remainingYears} ${yearsString} and ${remainingMonths} ${monthsString}`;
     output.appendChild(monthsToSaveOutput);
 
     const savingsBucket = document.getElementById('savingsBucket');
