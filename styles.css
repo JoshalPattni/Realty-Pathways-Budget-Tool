@@ -1,3 +1,4 @@
+/* Global Styles */
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
@@ -7,9 +8,9 @@ body {
 }
 
 header {
-    background: #000000; /* Updated to black */
+    background: #000000; /* Black */
     color: #ffffff;
-    padding: 10px 20px;
+    padding: 20px;
     text-align: center;
 }
 
@@ -28,7 +29,8 @@ section {
     border-radius: 8px;
 }
 
-input, select {
+input[type="text"],
+input[type="number"] {
     width: calc(100% - 22px);
     margin: 10px 0;
     padding: 10px;
@@ -51,4 +53,25 @@ button:hover {
 
 #output {
     margin-top: 20px;
+}
+
+/* Additional Styles */
+#budgetWorksheet h2,
+#calculator h2,
+#summary h2 {
+    color: #0056b3; /* Blue */
+}
+
+.expense {
+    display: flex;
+    justify-content: space-between;
+}
+
+.expense input {
+    width: 48%;
+}
+
+#summary ul {
+    list-style-type: disc;
+    padding-left: 20px;
 }
