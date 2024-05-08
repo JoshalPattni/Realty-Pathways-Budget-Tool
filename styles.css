@@ -1,6 +1,6 @@
 body {
-    font-family: 'Comic Sans MS', cursive, sans-serif;
-    background-color: #ffe6e6;
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
     margin: 0;
     padding: 0;
 }
@@ -9,60 +9,42 @@ body {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-    text-align: center;
 }
 
 .title {
-    color: #ff4d4d;
-    font-size: 36px;
+    color: #000;
+    text-align: center;
 }
 
 .subtitle {
-    color: #ff4d4d;
-    font-size: 24px;
-    margin-bottom: 20px;
+    color: #000;
+    text-align: center;
+    font-weight: normal;
 }
 
 .step {
-    margin-bottom: 40px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     padding: 20px;
-    background-color: #ffd9b3;
-    border-radius: 20px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
 }
 
 .description {
     font-size: 20px;
     font-weight: bold;
-}
-
-.expense {
     margin-bottom: 10px;
 }
 
-.expense input[type="text"],
-.expense input[type="number"] {
-    width: 40%;
-    margin-right: 10px;
-    padding: 5px;
-}
-
-.expense button {
-    padding: 5px 10px;
-    background-color: #ff9933;
+button {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    color: white;
     cursor: pointer;
 }
 
-.expense button:hover {
-    background-color: #ff6600;
+button:hover {
+    background-color: #2980b9;
 }
-
-.result {
-    font-size: 18px;
-    margin-top: 10px;
-    color: #ff4d4d;
-}
-
