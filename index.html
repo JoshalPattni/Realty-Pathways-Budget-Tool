@@ -12,24 +12,32 @@
         <p>Welcome to the Budget Saving Tool. Use our budget worksheet to calculate your monthly spending and determine your financial goals.</p>
     </header>
     <section id="budgetWorksheet">
-        <h2>Monthly Budget Worksheet</h2>
-        <p>Use our budget worksheet to calculate where you are spending your money. Once you have a better idea of your current spending habits, you can make adjustments to reach your financial goals.</p>
+        <h2>How Much Do You Spend in a Month?</h2>
+        <p>Enter your monthly expenses below to calculate your total spending.</p>
         <label for="expense1">Expense 1:</label>
-        <input type="number" id="expense1" placeholder="Enter amount for Expense 1">
+        <input type="text" id="expense1" placeholder="Expense description">
+        <input type="number" id="amount1" placeholder="Amount">
         <label for="expense2">Expense 2:</label>
-        <input type="number" id="expense2" placeholder="Enter amount for Expense 2">
+        <input type="text" id="expense2" placeholder="Expense description">
+        <input type="number" id="amount2" placeholder="Amount">
         <!-- Add more inputs as needed -->
     </section>
     <section id="calculator">
         <h2>Budget Saving Calculator</h2>
-        <p>Fill out the details below to calculate your potential home buying power.</p>
-        <label for="annualIncome">Gross Annual Income (before tax):</label>
-        <input type="number" id="annualIncome" placeholder="Enter your gross annual income">
-        <label for="carLoans">Car Loans:</label>
-        <input type="number" id="carLoans" placeholder="Enter your car loan amount">
-        <!-- Add more inputs as needed -->
+        <p>Enter your monthly savings target to calculate how long it will take to afford your dream property.</p>
+        <label for="savingsTarget">Monthly Savings Target (£):</label>
+        <input type="number" id="savingsTarget" placeholder="Enter your savings target">
         <button onclick="calculateResults()">Calculate</button>
         <div id="output"></div>
+    </section>
+    <section id="summary">
+        <h2>Summary</h2>
+        <p>Based on your inputs, here are some tips to improve your budgeting:</p>
+        <ul>
+            <li>Track your expenses regularly to identify areas for saving.</li>
+            <li>Consider reducing discretionary spending on non-essential items.</li>
+            <li>Set specific savings goals and automate your savings to reach them faster.</li>
+        </ul>
     </section>
     <script src="script.js"></script>
 </body>
