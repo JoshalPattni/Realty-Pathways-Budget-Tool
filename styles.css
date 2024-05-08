@@ -7,7 +7,7 @@ body {
 }
 
 header {
-    background-color: #1e90ff;
+    background-color: #000000;
     color: #ffffff;
     text-align: center;
     padding: 20px 0;
@@ -26,6 +26,7 @@ main {
     margin-bottom: 40px;
     text-align: left;
     display: inline-block;
+    width: 100%;
 }
 
 p {
@@ -45,14 +46,14 @@ input[type="number"] {
 
 button {
     padding: 10px 20px;
-    background-color: #1e90ff;
+    background-color: #000000;
     color: #ffffff;
     border: none;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #007bff;
+    background-color: #1e90ff;
 }
 
 /* Adjustments for step 2 */
@@ -60,4 +61,20 @@ button:hover {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    border: 1px solid #000000;
+    padding: 8px;
+}
+
+table th {
+    background-color: #000000;
+    color: #ffffff;
 }
