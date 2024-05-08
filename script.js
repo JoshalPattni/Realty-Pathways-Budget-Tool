@@ -1,3 +1,14 @@
+function addExpense() {
+    const expensesDiv = document.getElementById('expenses');
+    const newExpense = document.createElement('div');
+    newExpense.classList.add('expense');
+    newExpense.innerHTML = `
+        <input type="text" placeholder="Expense" class="expense-name">
+        <input type="number" placeholder="Amount (£)" step="0.01" class="expense-amount">
+    `;
+    expensesDiv.appendChild(newExpense);
+}
+
 function calculateTotalExpenses() {
     const expenses = document.querySelectorAll('.expense');
     let totalMonthlyExpenses = 0;
@@ -63,14 +74,26 @@ function calculateTotalExpenses() {
     monthsToSaveOutput.textContent = `Months to Save for Dream Property: ${monthsString}`;
     output.appendChild(monthsToSaveOutput);
 
-    // Customized solutions based on spending habits
-    const solutionDiv = document.createElement('div');
-    solutionDiv.innerHTML = `
-        <h2>Solutions</h2>
-        <p>Consider reducing spending on non-essential items to increase savings.</p>
-        <p>For example, reducing monthly spending on dining out, entertainment subscriptions, or unnecessary purchases can significantly boost your savings.</p>
-        <p>Here's a visualization of how cutting back on these expenses can impact your budget:</p>
-        <img src="before_after.png" alt="Before and After" style="max-width: 100%;">
-    `;
-    output.appendChild(solutionDiv);
+    const savingsBucket = document.getElementById('savingsBucket');
+    savingsBucket.style.display = 'block';
+    const bucket = document.getElementById('bucket');
+    const water = document.getElementById('water');
+    const bucketStatus = document.getElementById('bucketStatus');
+    const bucketCapacity = 400; // Height of the bucket container in pixels
+    const savingsIncrement = remainingFunds / 2; // Half of the remaining funds
+
+    let currentHeight = 0;
+    let monthsToFillBucket = 0;
+
+    const fillBucketInterval = setInterval(() => {
+        currentHeight += savingsIncrement / 100; // Incrementally fill the bucket
+        water.style.height = `${currentHeight}px`;
+
+        if (currentHeight >= bucketCapacity) {
+            clearInterval(fillBucketInterval);
+            bucketStatus.textContent = 'Congratulations! Your savings bucket is full!';
+        }
+
+        monthsToFillBucket++;
+    }, 500); // Adjust the interval time as needed
 }
