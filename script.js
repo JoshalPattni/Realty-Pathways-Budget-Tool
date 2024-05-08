@@ -17,29 +17,32 @@ function calculateYearsToSave() {
     propertyCost = parseInt(document.getElementById('propertyCost').value);
     const remainingAmount = propertyCost - savingsTarget;
     const remainingMonths = Math.ceil(remainingAmount / monthlyIncome);
-    const remainingYears = Math.floor(remainingMonths / 12);
-    const remainingMonthsInYear = remainingMonths % 12;
+    const years = Math.floor(remainingMonths / 12);
+    const months = remainingMonths % 12;
+    document.getElementById('yearsToSave').textContent = `Years: ${years}, Months: ${months}`;
+    showStep(4);
+}
 
-    const bucketStatus = document.getElementById('bucketStatus');
-    bucketStatus.textContent = `You need to save for ${remainingYears} years and ${remainingMonthsInYear} months`;
-
-    const water = document.getElementById('water');
-    const bucketHeight = Math.min(remainingMonths / 200 * 100, 100); // Limit bucket height to 100%
-    water.style.height = `${bucketHeight}%`;
+function fillBucket() {
+    const monthlySavings = parseInt(document.getElementById('monthlySavings').value);
+    const totalMonths = Math.ceil((propertyCost - savingsTarget) / monthlySavings);
+    const fillPercentage = ((totalMonths - remainingMonths) / totalMonths) * 100;
+    document.getElementById('bucket').style.height = `${fillPercentage}%`;
+    document.getElementById('bucketStatus').textContent = `Bucket filled ${fillPercentage.toFixed(2)}%`;
 }
 
 function showStep(step) {
     const steps = document.querySelectorAll('.step');
-    steps.forEach((s, index) => {
-        if (index === step - 1) {
-            s.style.display = 'block';
-        } else {
-            s.style.display = 'none';
-        }
-    });
+    steps.forEach(s => s.style.display = 'none');
+    document.getElementById(`step${step}`).style.display = 'block';
 }
 
-document.getElementById('savingsTarget').addEventListener('input', () => {
-    savingsTarget = parseInt(document.getElementById('savingsTarget').value);
+document.addEventListener('DOMContentLoaded', () => {
+    const rangeInput = document.getElementById('savingsTarget');
+    rangeInput.addEventListener('input', () => {
+        savingsTarget = parseInt(rangeInput.value);
+        updateSavingsAmount();
+    });
     updateSavingsAmount();
 });
+
