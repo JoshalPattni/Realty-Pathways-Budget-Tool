@@ -14,6 +14,8 @@
     <section id="budgetWorksheet">
         <h2>How Much Do You Spend in a Month?</h2>
         <p>Enter your monthly expenses below to calculate your total spending.</p>
+        <label for="totalMonthlyIncome">Total Monthly Income (£):</label>
+        <input type="number" id="totalMonthlyIncome" placeholder="Enter your total monthly income">
         <div id="expenses">
             <div class="expense">
                 <input type="text" class="expense-description" placeholder="Expense description">
@@ -35,7 +37,7 @@
         <button onclick="calculateResults()">Calculate</button>
         <div id="output"></div>
     </section>
-    <section id="summary">
+    <section id="summary" style="display: none;">
         <h2>Summary</h2>
         <p>Based on your inputs, here are some tips to improve your budgeting:</p>
         <ul id="tips">
