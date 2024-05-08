@@ -20,25 +20,36 @@ function calculateResults() {
         }
     });
 
-    const savingsTarget = parseFloat(document.getElementById('savingsTarget').value);
+    const totalMonthlyIncome = parseFloat(document.getElementById('totalMonthlyIncome').value);
     const propertyCost = parseFloat(document.getElementById('propertyCost').value);
+    const savingsTarget = parseFloat(document.getElementById('savingsTarget').value);
     const monthsToSave = parseFloat(document.getElementById('monthsToSave').value);
+
+    // Calculate remaining funds after expenses
+    const remainingFunds = totalMonthlyIncome - totalMonthlyExpenses;
 
     // Calculate required monthly savings
     let monthlySavingsNeeded = 0;
+    let monthsNeeded = 0;
     if (!isNaN(propertyCost) && !isNaN(monthsToSave)) {
         monthlySavingsNeeded = (propertyCost / monthsToSave).toFixed(2);
+        monthsNeeded = Math.ceil(propertyCost / remainingFunds);
     }
 
     // Display results
     const output = document.getElementById('output');
     output.innerHTML = `
         <h2>Calculated Results</h2>
+        <p>Total Monthly Income: £${totalMonthlyIncome.toFixed(2)}</p>
         <p>Total Monthly Expenses: £${totalMonthlyExpenses.toFixed(2)}</p>
+        <p>Remaining Funds: £${remainingFunds.toFixed(2)}</p>
         <p>Monthly Savings Needed for Property: £${monthlySavingsNeeded}</p>
+        <p>Months to Save for Dream Property: ${monthsNeeded}</p>
     `;
 
     // Generate tips based on user inputs
+    const summary = document.getElementById('summary');
+    summary.style.display = 'block';
     const tips = document.getElementById('tips');
     tips.innerHTML = '';
     if (totalMonthlyExpenses > savingsTarget) {
