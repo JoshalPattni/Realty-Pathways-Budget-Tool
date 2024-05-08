@@ -13,6 +13,7 @@
     <main>
         <section id="step1" class="step">
             <h2>Step 1: Calculate Your Monthly Income</h2>
+            <p>Enter your annual income to calculate your estimated monthly income after tax.</p>
             <label for="annualIncome">Total Annual Income (£):</label>
             <input type="number" id="annualIncome" placeholder="Enter your annual income">
             <button id="calculateMonthlyIncome">Calculate Monthly Income</button>
@@ -21,6 +22,7 @@
 
         <section id="step2" class="step">
             <h2>Step 2: Monthly Expenses</h2>
+            <p>Enter your monthly expenses below.</p>
             <div id="expenses">
                 <!-- Expenses inputs will be added dynamically here -->
             </div>
@@ -31,11 +33,17 @@
 
         <section id="step3" class="step">
             <h2>Step 3: What You're Left With</h2>
+            <p>Calculate the amount left after deducting expenses from monthly income, and specify the savings percentage.</p>
             <div id="leftoverResult"></div>
+            <label for="savingsPercentage">Savings Percentage (%):</label>
+            <input type="number" id="savingsPercentage" placeholder="Enter your savings percentage">
+            <button id="calculateSavings">Calculate Total Savings</button>
+            <div id="totalSavingsResult"></div>
         </section>
 
         <section id="step4" class="step">
             <h2>Step 4: Calculate Your Savings Target</h2>
+            <p>Calculate the time required to save for the deposit based on the total monthly savings and property cost.</p>
             <label for="monthlySavingsTarget">Monthly Savings Target (£):</label>
             <input type="number" id="monthlySavingsTarget" placeholder="Enter your monthly savings target">
             <label for="propertyCost">Property Cost (£):</label>
@@ -45,10 +53,12 @@
         </section>
 
         <section id="step5" class="step">
-            <h2>Step 5: Savings Bucket</h2>
-            <label for="monthlySavings">Monthly Savings (£):</label>
-            <input type="number" id="monthlySavings" placeholder="Enter your monthly savings">
-            <button id="fillBucket">Fill Bucket</button>
+            <h2>Step 5: Savings Budget Tool</h2>
+            <p>Track your monthly savings progress to achieve your deposit target.</p>
+            <p>Month 1</p>
+            <input type="number" id="month1" placeholder="Enter savings for month 1">
+            <!-- More month inputs will be added dynamically here -->
+            <button id="calculateBucket">Calculate Bucket</button>
             <div id="bucketStatus"></div>
         </section>
     </main>
