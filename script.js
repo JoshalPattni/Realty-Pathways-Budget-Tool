@@ -10,10 +10,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const calculateTotalExpensesButton = document.getElementById("calculateTotalExpenses");
     const totalExpensesResult = document.getElementById("totalExpensesResult");
 
-    // Step 3: Savings Goals
-    const emergencyFundInput = document.getElementById("emergencyFund");
-    const calculateTotalSavingsButton = document.getElementById("calculateTotalSavings");
-    const totalSavingsResult = document.getElementById("totalSavingsResult");
+    // Step 3: What You're Left With
+    const leftoverResult = document.getElementById("leftoverResult");
 
     // Step 4: Calculate Savings Target
     const monthlySavingsTargetInput = document.getElementById("monthlySavingsTarget");
@@ -30,7 +28,6 @@ document.addEventListener("DOMContentLoaded", function() {
     calculateMonthlyIncomeButton.addEventListener("click", calculateMonthlyIncome);
     addExpenseButton.addEventListener("click", addExpense);
     calculateTotalExpensesButton.addEventListener("click", calculateTotalExpenses);
-    calculateTotalSavingsButton.addEventListener("click", calculateTotalSavings);
     calculateTimeToSaveButton.addEventListener("click", calculateTimeToSave);
     fillBucketButton.addEventListener("click", fillBucket);
 
@@ -68,16 +65,15 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
         totalExpensesResult.textContent = `Total Monthly Expenses: £${totalExpenses.toFixed(2)}`;
+        calculateLeftover();
     }
 
-    // Function to calculate total savings
-    function calculateTotalSavings() {
-        const emergencyFund = parseFloat(emergencyFundInput.value);
-        if (!isNaN(emergencyFund)) {
-            totalSavingsResult.textContent = `Total Savings Goal: £${emergencyFund.toFixed(2)}`;
-        } else {
-            totalSavingsResult.textContent = "Please enter a valid amount for the Emergency Fund.";
-        }
+    // Function to calculate what's left after expenses
+    function calculateLeftover() {
+        const monthlyIncome = parseFloat(monthlyIncomeResult.textContent.split("£")[1]);
+        const totalExpenses = parseFloat(totalExpensesResult.textContent.split("£")[1]);
+        const leftover = monthlyIncome - totalExpenses;
+        leftoverResult.textContent = `What You're Left With: £${leftover.toFixed(2)}`;
     }
 
     // Function to calculate time to save
@@ -85,7 +81,9 @@ document.addEventListener("DOMContentLoaded", function() {
         const monthlySavingsTarget = parseFloat(monthlySavingsTargetInput.value);
         const propertyCost = parseFloat(propertyCostInput.value);
         if (!isNaN(monthlySavingsTarget) && !isNaN(propertyCost)) {
-            const monthsToSave = Math.ceil(propertyCost / monthlySavingsTarget);
+            const depositPercentage = confirm("Are you buying the property to live in?") ? 0.1 : 0.2;
+            const depositAmount = propertyCost * depositPercentage;
+            const monthsToSave = Math.ceil(depositAmount / monthlySavingsTarget);
             timeToSaveResult.textContent = `Months to Save for Deposit: ${monthsToSave}`;
         } else {
             timeToSaveResult.textContent = "Please enter valid amounts for Monthly Savings Target and Property Cost.";
