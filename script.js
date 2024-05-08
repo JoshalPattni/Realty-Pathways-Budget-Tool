@@ -1,52 +1,55 @@
 // JavaScript for Budget Saving Tool
 
-// Step 2: Add Expense
-function addExpense() {
-    const expensesList = document.getElementById('expensesList');
-    const expenseItem = document.createElement('div');
-    expenseItem.innerHTML = `
-        <label for="expenseName">Expense Name:</label>
-        <input type="text" name="expenseName">
-        <label for="expenseAmount">Expense Amount (£):</label>
-        <input type="number" name="expenseAmount">
-    `;
-    expensesList.appendChild(expenseItem);
+// Step 1: Calculate Monthly Income
+function calculateMonthlyIncome() {
+    const annualIncome = parseFloat(document.getElementById('annualIncome').value) || 0;
+    const monthlyIncome = annualIncome / 12;
+    document.getElementById('monthlyIncome').innerText = `Monthly Income: £${monthlyIncome.toFixed(2)}`;
+
+    // Show next step
+    document.getElementById('step2').style.display = 'block';
 }
 
-// Step 2: Calculate Total Expenses
+// Step 2: Add Monthly Expenses
+function addExpense() {
+    const monthlyExpensesSection = document.getElementById('monthlyExpenses');
+    const newExpenseInput = document.createElement('input');
+    newExpenseInput.type = 'text';
+    newExpenseInput.placeholder = 'Expense name';
+    const newExpenseAmountInput = document.createElement('input');
+    newExpenseAmountInput.type = 'number';
+    newExpenseAmountInput.placeholder = 'Expense amount (£)';
+    monthlyExpensesSection.appendChild(newExpenseInput);
+    monthlyExpensesSection.appendChild(newExpenseAmountInput);
+}
+
 function calculateTotalExpenses() {
-    const expenseInputs = document.querySelectorAll('#expensesList input[type="number"]');
+    const expenseInputs = document.querySelectorAll('#monthlyExpenses input[type="number"]');
     let totalExpenses = 0;
     expenseInputs.forEach(input => {
         totalExpenses += parseFloat(input.value) || 0;
     });
-    alert(`Total Monthly Expenses: £${totalExpenses.toFixed(2)}`);
+    document.getElementById('totalExpenses').innerText = `Total Monthly Expenses: £${totalExpenses.toFixed(2)}`;
+
+    // Show next step
+    document.getElementById('step3').style.display = 'block';
 }
 
-// Step 3: Calculate Total Savings
-function calculateTotalSavings() {
-    const emergencyFund = parseFloat(document.getElementById('emergencyFund').value) || 0;
-    alert(`Total Savings Goal: £${emergencyFund.toFixed(2)}`);
+// Step 3: Calculate Savings Target
+function calculateSavingsTarget() {
+    const monthlySavingsTarget = parseFloat(document.getElementById('monthlySavingsTarget').value) || 0;
+    document.getElementById('savingsTarget').innerText = `Monthly Savings Target: £${monthlySavingsTarget.toFixed(2)}`;
+
+    // Show next step
+    document.getElementById('step4').style.display = 'block';
 }
 
-// Step 4: Calculate Time to Save
-function calculateSavingsTime() {
-    const savingsTarget = parseFloat(document.getElementById('savingsTarget').value) || 0;
-    const propertyCost = parseFloat(document.getElementById('propertyCost').value) || 0;
-    const monthsToSave = propertyCost / savingsTarget;
-    const yearsToSave = monthsToSave / 12;
-    alert(`Months to Save for Dream Property: ${monthsToSave.toFixed(2)} months (${yearsToSave.toFixed(2)} years)`);
-}
+// Step 4: Calculate Months to Save
+function calculateMonthsToSave() {
+    // Placeholder for Step 4 calculation
+    const monthsToSave = 12; // Placeholder value
+    document.getElementById('monthsToSave').innerText = `Months to Save: ${monthsToSave}`;
 
-// Step 6: Fill Savings Bucket
-function fillBucket() {
-    const bucket = document.getElementById('bucket');
-    const monthlySavings = parseFloat(document.getElementById('monthlySavings').value) || 0;
-    let bucketFillPercentage = monthlySavings / 100;
-    if (bucketFillPercentage > 1) {
-        bucketFillPercentage = 1;
-    }
-    bucket.style.height = `${bucketFillPercentage * 100}%`;
-    document.getElementById('bucketStatus').innerText = `Bucket filled: ${(bucketFillPercentage * 100).toFixed(2)}%`;
+    // Show next step
+    document.getElementById('step5').style.display = 'block';
 }
-
