@@ -6,18 +6,12 @@ body {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #000;
+    color: #fff;
 }
 
 .section {
     margin-bottom: 30px;
-}
-
-#monthlyBudgetWorksheet,
-#budgetSavingCalculator {
-    margin-bottom: 20px;
 }
 
 input[type="number"] {
@@ -70,4 +64,8 @@ button:hover {
     left: 0;
     width: 100%;
     background-color: blue;
+}
+
+#bucketStatus {
+    text-align: center;
 }
