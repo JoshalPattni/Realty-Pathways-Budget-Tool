@@ -1,29 +1,22 @@
-let monthlyIncome;
-let monthlyExpenses;
-let savingsTarget;
-let propertyCost;
+let annualIncome = 0;
+let monthlyIncome = 0;
+let savingsTarget = 0;
+let propertyCost = 0;
 
 function calculateMonthlyIncome() {
-    const annualIncome = parseFloat(document.getElementById('annualIncome').value);
+    annualIncome = parseInt(document.getElementById('annualIncome').value);
     monthlyIncome = annualIncome / 12;
     showStep(2);
 }
 
 function updateSavingsAmount() {
-    document.getElementById('savingsAmount').textContent = `£${savingsTarget}`;
+    document.getElementById('savingsAmount').textContent = `Savings Target: £${savingsTarget}`;
 }
 
 function calculateYearsToSave() {
-    propertyCost = parseFloat(document.getElementById('propertyCost').value);
-    const remainingFunds = monthlyIncome - monthlyExpenses;
-    savingsTarget = Math.min(remainingFunds, 0); // Ensure savings target does not exceed remaining funds
-    updateSavingsAmount();
-    showStep(4);
-}
-
-function fillBucket() {
-    const monthlySavings = parseFloat(document.getElementById('monthlySavings').value);
-    const remainingMonths = Math.ceil(propertyCost / monthlySavings);
+    propertyCost = parseInt(document.getElementById('propertyCost').value);
+    const remainingAmount = propertyCost - savingsTarget;
+    const remainingMonths = Math.ceil(remainingAmount / monthlyIncome);
     const remainingYears = Math.floor(remainingMonths / 12);
     const remainingMonthsInYear = remainingMonths % 12;
 
@@ -50,4 +43,3 @@ document.getElementById('savingsTarget').addEventListener('input', () => {
     savingsTarget = parseInt(document.getElementById('savingsTarget').value);
     updateSavingsAmount();
 });
-
