@@ -1,55 +1,67 @@
-// JavaScript for Budget Saving Tool
+document.addEventListener("DOMContentLoaded", function() {
+    const addExpenseButton = document.getElementById("addExpense");
+    const calculateExpensesButton = document.getElementById("calculateExpenses");
+    const calculateSavingsButton = document.getElementById("calculateSavings");
+    const calculateTimeButton = document.getElementById("calculateTime");
+    const fillBucketButton = document.getElementById("fillBucket");
+    const expensesContainer = document.getElementById("expenses");
+    const bucketPercentage = document.getElementById("bucketPercentage");
 
-// Step 1: Calculate Monthly Income
-function calculateMonthlyIncome() {
-    const annualIncome = parseFloat(document.getElementById('annualIncome').value) || 0;
-    const monthlyIncome = annualIncome / 12;
-    document.getElementById('monthlyIncome').innerText = `Monthly Income: £${monthlyIncome.toFixed(2)}`;
+    addExpenseButton.addEventListener("click", addExpense);
+    calculateExpensesButton.addEventListener("click", calculateTotalExpenses);
+    calculateSavingsButton.addEventListener("click", calculateTotalSavings);
+    calculateTimeButton.addEventListener("click", calculateTimeToSave);
+    fillBucketButton.addEventListener("click", fillBucket);
 
-    // Show next step
-    document.getElementById('step2').style.display = 'block';
-}
+    function addExpense() {
+        const expenseDiv = document.createElement("div");
+        expenseDiv.classList.add("expense");
+        expenseDiv.innerHTML = `
+            <input type="text" placeholder="Expense Name">
+            <input type="number" placeholder="Expense Amount (£)">
+            <button class="removeExpense">Remove</button>
+        `;
+        expensesContainer.appendChild(expenseDiv);
 
-// Step 2: Add Monthly Expenses
-function addExpense() {
-    const monthlyExpensesSection = document.getElementById('monthlyExpenses');
-    const newExpenseInput = document.createElement('input');
-    newExpenseInput.type = 'text';
-    newExpenseInput.placeholder = 'Expense name';
-    const newExpenseAmountInput = document.createElement('input');
-    newExpenseAmountInput.type = 'number';
-    newExpenseAmountInput.placeholder = 'Expense amount (£)';
-    monthlyExpensesSection.appendChild(newExpenseInput);
-    monthlyExpensesSection.appendChild(newExpenseAmountInput);
-}
+        const removeButtons = document.querySelectorAll(".removeExpense");
+        removeButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                button.parentElement.remove();
+            });
+        });
+    }
 
-function calculateTotalExpenses() {
-    const expenseInputs = document.querySelectorAll('#monthlyExpenses input[type="number"]');
-    let totalExpenses = 0;
-    expenseInputs.forEach(input => {
-        totalExpenses += parseFloat(input.value) || 0;
-    });
-    document.getElementById('totalExpenses').innerText = `Total Monthly Expenses: £${totalExpenses.toFixed(2)}`;
+    function calculateTotalExpenses() {
+        const expenseInputs = document.querySelectorAll("#expenses input[type='number']");
+        let totalExpenses = 0;
+        expenseInputs.forEach(input => {
+            totalExpenses += parseFloat(input.value);
+        });
+        alert(`Total Monthly Expenses: £${totalExpenses.toFixed(2)}`);
+    }
 
-    // Show next step
-    document.getElementById('step3').style.display = 'block';
-}
+    function calculateTotalSavings() {
+        const emergencyFund = parseFloat(document.getElementById("emergencyFund").value);
+        alert(`Total Savings: £${emergencyFund.toFixed(2)}`);
+    }
 
-// Step 3: Calculate Monthly Savings Target
-function calculateSavingsTarget() {
-    const monthlyIncome = parseFloat(document.getElementById('monthlyIncome').innerText.split('£')[1]);
-    const totalExpenses = parseFloat(document.getElementById('totalExpenses').innerText.split('£')[1]);
-    const monthlySavingsTarget = monthlyIncome - totalExpenses;
-    document.getElementById('savingsTarget').innerText = `Monthly Savings Target: £${monthlySavingsTarget.toFixed(2)}`;
+    function calculateTimeToSave() {
+        const monthlySavings = parseFloat(document.getElementById("monthlySavings").value);
+        const propertyCost = parseFloat(document.getElementById("propertyCost").value);
+        const propertyType = document.getElementById("propertyType").value;
+        const depositPercentage = propertyType === "residential" ? 0.1 : 0.2;
+        const depositAmount = propertyCost * depositPercentage;
+        const monthsToSave = depositAmount / monthlySavings;
+        const yearsToSave = monthsToSave / 12;
+        alert(`Months to Save for Deposit: ${monthsToSave.toFixed(2)} (${yearsToSave.toFixed(2)} years)`);
+    }
 
-    // Show next step
-    document.getElementById('step4').style.display = 'block';
-}
-
-// Step 4: Calculate Months to Save for Deposit
-function calculateMonthsToSave() {
-    const depositAmount = parseFloat(document.getElementById('depositAmount').value);
-    const monthlySavingsTarget = parseFloat(document.getElementById('savingsTarget').innerText.split('£')[1]);
-    const monthsToSave = Math.ceil(depositAmount / monthlySavingsTarget);
-    document.getElementById('monthsToSave').innerText = `Time to Save for Deposit: ${monthsToSave} months`;
-}
+    function fillBucket() {
+        const monthlySavingsBucket = parseFloat(document.getElementById("monthlySavingsBucket").value);
+        if (monthlySavingsBucket >= 0 && monthlySavingsBucket <= 100) {
+            bucketPercentage.textContent = `${monthlySavingsBucket.toFixed(2)}%`;
+        } else {
+            alert("Please enter a value between 0 and 100 for Monthly Savings.");
+        }
+    }
+});
