@@ -63,8 +63,9 @@
         <div id="step5" class="step">
             <p class="description">Step 5: Savings Budget Tool</p>
             <p>Track your monthly savings progress to achieve your deposit target.</p>
-            <p>Month 1: <input type="number" id="month1Savings" placeholder="Enter Savings (£)"></p>
-            <!-- More month inputs here -->
+            <div id="budgetTable">
+                <!-- Budget table will be dynamically generated here -->
+            </div>
             <button onclick="fillBucket()">Calculate Bucket</button>
             <p id="bucketFill" class="result">Bucket filled: <span id="bucketFillPercentage">0.00%</span></p>
         </div>
