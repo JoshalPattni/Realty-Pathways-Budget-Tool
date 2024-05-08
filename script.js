@@ -51,11 +51,5 @@ function calculateMonthsToSave() {
     const depositAmount = parseFloat(document.getElementById('depositAmount').value);
     const monthlySavingsTarget = parseFloat(document.getElementById('savingsTarget').innerText.split('£')[1]);
     const monthsToSave = Math.ceil(depositAmount / monthlySavingsTarget);
-    const yearsToSave = Math.floor(monthsToSave / 12);
-    const remainingMonths = monthsToSave % 12;
-    let monthsToSaveText = `${monthsToSave} months`;
-    if (yearsToSave > 0) {
-        monthsToSaveText = `${yearsToSave} years ${remainingMonths} months`;
-    }
-    document.getElementById('monthsToSave').innerText = `Time to Save for Deposit: ${monthsToSaveText}`;
+    document.getElementById('monthsToSave').innerText = `Time to Save for Deposit: ${monthsToSave} months`;
 }
