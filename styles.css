@@ -30,14 +30,8 @@ label {
     margin-bottom: 10px;
 }
 
-input[type="number"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
+input[type="number"],
+input[type="text"],
 select {
     width: 100%;
     padding: 10px;
@@ -60,28 +54,6 @@ button:hover {
     background-color: #0056b3;
 }
 
-#expenses {
-    margin-bottom: 20px;
-}
-
-.expense {
-    margin-bottom: 10px;
-}
-
-.expense input[type="text"],
-.expense input[type="number"] {
-    width: 40%;
-    margin-right: 10px;
-}
-
-.expense button {
-    background-color: #28a745;
-}
-
-.expense button:hover {
-    background-color: #218838;
-}
-
 #bucketPercentage {
     font-weight: bold;
 }
@@ -92,4 +64,12 @@ button:hover {
 
 #fillBucket:hover {
     background-color: #e0a800;
+}
+
+.expense button {
+    background-color: #28a745;
+}
+
+.expense button:hover {
+    background-color: #218838;
 }
