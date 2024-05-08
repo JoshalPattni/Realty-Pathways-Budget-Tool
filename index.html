@@ -3,53 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Realty Pathways - Budget Saving Tool</title>
+    <title>Budget Saving Tool</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Realty Pathways - Budget Saving Tool</h1>
+        <h1>Realty Pathways Logo</h1>
+        <h2>Budget Saving Tool</h2>
     </header>
+
     <section id="step1">
-        <header>
-            <h2>Step 1: Monthly Income</h2>
-        </header>
-        <label for="annualIncome">Annual Income (£):</label>
-        <input type="number" id="annualIncome">
-        <button onclick="calculateMonthlyIncome()">Calculate Monthly Income</button>
-        <div id="monthlyIncome"></div>
+        <h3>Step 1: Calculate Your Monthly Income</h3>
+        <label for="totalIncome">Total Monthly Income (£):</label>
+        <input type="number" id="totalIncome">
     </section>
 
-    <section id="step2" style="display: none;">
-        <header>
-            <h2>Step 2: Monthly Expenses</h2>
-        </header>
-        <section id="monthlyExpenses">
-            <!-- Dynamic content for monthly expenses will be added here -->
-        </section>
-        <button onclick="addExpense()">Add Expense</button>
-        <button onclick="calculateTotalExpenses()">Calculate Total Expenses</button>
-        <div id="totalExpenses"></div>
+    <section id="step2">
+        <h3>Step 2: Monthly Expenses</h3>
+        <p>Enter your monthly expenses below:</p>
+        <div id="expenses"></div>
+        <button id="addExpense">Add Expense</button>
+        <button id="calculateExpenses">Calculate Total Expenses</button>
     </section>
 
-    <section id="step3" style="display: none;">
-        <header>
-            <h2>Step 3: Monthly Savings Target</h2>
-        </header>
-        <label for="monthlySavings">Monthly Savings (£):</label>
+    <section id="step3">
+        <h3>Step 3: Savings Goals</h3>
+        <p>Enter your savings goals below:</p>
+        <label for="emergencyFund">Emergency Fund (£):</label>
+        <input type="number" id="emergencyFund">
+        <button id="calculateSavings">Calculate Total Savings</button>
+    </section>
+
+    <section id="step4">
+        <h3>Step 4: Calculate Your Savings Target</h3>
+        <label for="monthlySavings">Monthly Savings Target (£):</label>
         <input type="number" id="monthlySavings">
-        <button onclick="calculateSavingsTarget()">Calculate Savings Target</button>
-        <div id="savingsTarget"></div>
+        <label for="propertyCost">Property Cost (£):</label>
+        <input type="number" id="propertyCost">
+        <label for="propertyType">Property Type:</label>
+        <select id="propertyType">
+            <option value="residential">Residential</option>
+            <option value="buyToLet">Buy-to-Let</option>
+        </select>
+        <button id="calculateTime">Calculate Time to Save</button>
     </section>
 
-    <section id="step4" style="display: none;">
-        <header>
-            <h2>Step 4: Time to Save for Deposit</h2>
-        </header>
-        <label for="depositAmount">Deposit Amount (£):</label>
-        <input type="number" id="depositAmount" value="10000">
-        <button onclick="calculateMonthsToSave()">Calculate Months to Save</button>
-        <div id="monthsToSave"></div>
+    <section id="step5">
+        <h3>Step 5: Tips to Accelerate Savings</h3>
+        <p>Here are some tips to reduce the time needed to save:</p>
+        <ul>
+            <li>Reduce unnecessary expenses</li>
+            <li>Increase income through side hustles</li>
+            <li>Invest savings in high-yield accounts</li>
+        </ul>
+    </section>
+
+    <section id="step6">
+        <h3>Step 6: Savings Bucket</h3>
+        <p>Bucket filled: <span id="bucketPercentage">0.00%</span></p>
+        <label for="monthlySavingsBucket">Monthly Savings (£):</label>
+        <input type="number" id="monthlySavingsBucket">
+        <button id="fillBucket">Fill Bucket</button>
     </section>
 
     <script src="script.js"></script>
