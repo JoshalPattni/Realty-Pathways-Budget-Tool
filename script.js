@@ -35,21 +35,27 @@ function calculateTotalExpenses() {
     document.getElementById('step3').style.display = 'block';
 }
 
-// Step 3: Calculate Savings Target
+// Step 3: Calculate Monthly Savings Target
 function calculateSavingsTarget() {
-    const monthlySavingsTarget = parseFloat(document.getElementById('monthlySavingsTarget').value) || 0;
+    const monthlyIncome = parseFloat(document.getElementById('monthlyIncome').innerText.split('£')[1]);
+    const totalExpenses = parseFloat(document.getElementById('totalExpenses').innerText.split('£')[1]);
+    const monthlySavingsTarget = monthlyIncome - totalExpenses;
     document.getElementById('savingsTarget').innerText = `Monthly Savings Target: £${monthlySavingsTarget.toFixed(2)}`;
 
     // Show next step
     document.getElementById('step4').style.display = 'block';
 }
 
-// Step 4: Calculate Months to Save
+// Step 4: Calculate Months to Save for Deposit
 function calculateMonthsToSave() {
-    // Placeholder for Step 4 calculation
-    const monthsToSave = 12; // Placeholder value
-    document.getElementById('monthsToSave').innerText = `Months to Save: ${monthsToSave}`;
-
-    // Show next step
-    document.getElementById('step5').style.display = 'block';
+    const depositAmount = parseFloat(document.getElementById('depositAmount').value);
+    const monthlySavingsTarget = parseFloat(document.getElementById('savingsTarget').innerText.split('£')[1]);
+    const monthsToSave = Math.ceil(depositAmount / monthlySavingsTarget);
+    const yearsToSave = Math.floor(monthsToSave / 12);
+    const remainingMonths = monthsToSave % 12;
+    let monthsToSaveText = `${monthsToSave} months`;
+    if (yearsToSave > 0) {
+        monthsToSaveText = `${yearsToSave} years ${remainingMonths} months`;
+    }
+    document.getElementById('monthsToSave').innerText = `Time to Save for Deposit: ${monthsToSaveText}`;
 }
