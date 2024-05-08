@@ -1,6 +1,6 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background-color: #ffe6e6;
     margin: 0;
     padding: 0;
 }
@@ -13,63 +13,56 @@ body {
 }
 
 .title {
-    color: white;
-    background-color: black;
-    padding: 10px;
-    border-radius: 10px;
+    color: #ff4d4d;
+    font-size: 36px;
 }
 
 .subtitle {
-    color: white;
-    background-color: black;
-    padding: 10px;
-    border-radius: 10px;
+    color: #ff4d4d;
+    font-size: 24px;
+    margin-bottom: 20px;
 }
 
 .step {
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     padding: 20px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #ffd9b3;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 .description {
-    font-size: 18px;
-    margin-bottom: 10px;
-    color: black;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .expense {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     margin-bottom: 10px;
 }
 
-.expense input {
-    width: calc(50% - 5px);
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+.expense input[type="text"],
+.expense input[type="number"] {
+    width: 40%;
+    margin-right: 10px;
+    padding: 5px;
 }
 
 .expense button {
-    padding: 8px 15px;
+    padding: 5px 10px;
+    background-color: #ff9933;
     border: none;
     border-radius: 5px;
-    background-color: #007bff;
     color: white;
     cursor: pointer;
 }
 
 .expense button:hover {
-    background-color: #0056b3;
+    background-color: #ff6600;
 }
 
 .result {
     font-size: 18px;
     margin-top: 10px;
-    color: black;
+    color: #ff4d4d;
 }
 
