@@ -1,67 +1,91 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const addExpenseButton = document.getElementById("addExpense");
-    const calculateExpensesButton = document.getElementById("calculateExpenses");
-    const calculateSavingsButton = document.getElementById("calculateSavings");
-    const calculateTimeButton = document.getElementById("calculateTime");
-    const fillBucketButton = document.getElementById("fillBucket");
-    const expensesContainer = document.getElementById("expenses");
-    const bucketPercentage = document.getElementById("bucketPercentage");
+    // Step 1: Calculate Monthly Income
+    const totalMonthlyIncomeInput = document.getElementById("totalMonthlyIncome");
 
+    // Step 2: Monthly Expenses
+    const expensesDiv = document.getElementById("expenses");
+    const addExpenseButton = document.getElementById("addExpense");
+    const calculateTotalExpensesButton = document.getElementById("calculateTotalExpenses");
+
+    // Step 3: Savings Goals
+    const emergencyFundInput = document.getElementById("emergencyFund");
+    const calculateTotalSavingsButton = document.getElementById("calculateTotalSavings");
+
+    // Step 4: Calculate Savings Target
+    const monthlySavingsTargetInput = document.getElementById("monthlySavingsTarget");
+    const propertyCostInput = document.getElementById("propertyCost");
+    const calculateTimeToSaveButton = document.getElementById("calculateTimeToSave");
+
+    // Step 5: Tips to Accelerate Savings (No JavaScript needed)
+
+    // Step 6: Savings Bucket
+    const bucketPercentageSpan = document.getElementById("bucketPercentage");
+    const monthlySavingsInput = document.getElementById("monthlySavings");
+    const fillBucketButton = document.getElementById("fillBucket");
+
+    // Event listeners
     addExpenseButton.addEventListener("click", addExpense);
-    calculateExpensesButton.addEventListener("click", calculateTotalExpenses);
-    calculateSavingsButton.addEventListener("click", calculateTotalSavings);
-    calculateTimeButton.addEventListener("click", calculateTimeToSave);
+    calculateTotalExpensesButton.addEventListener("click", calculateTotalExpenses);
+    calculateTotalSavingsButton.addEventListener("click", calculateTotalSavings);
+    calculateTimeToSaveButton.addEventListener("click", calculateTimeToSave);
     fillBucketButton.addEventListener("click", fillBucket);
 
+    // Function to add new expense input fields
     function addExpense() {
-        const expenseDiv = document.createElement("div");
-        expenseDiv.classList.add("expense");
-        expenseDiv.innerHTML = `
-            <input type="text" placeholder="Expense Name">
-            <input type="number" placeholder="Expense Amount (£)">
-            <button class="removeExpense">Remove</button>
-        `;
-        expensesContainer.appendChild(expenseDiv);
+        const newExpenseInput = document.createElement("input");
+        newExpenseInput.type = "text";
+        newExpenseInput.placeholder = "Expense Name";
+        expensesDiv.appendChild(newExpenseInput);
 
-        const removeButtons = document.querySelectorAll(".removeExpense");
-        removeButtons.forEach(button => {
-            button.addEventListener("click", () => {
-                button.parentElement.remove();
-            });
-        });
+        const newAmountInput = document.createElement("input");
+        newAmountInput.type = "number";
+        newAmountInput.placeholder = "Expense Amount (£)";
+        expensesDiv.appendChild(newAmountInput);
     }
 
+    // Function to calculate total expenses
     function calculateTotalExpenses() {
-        const expenseInputs = document.querySelectorAll("#expenses input[type='number']");
         let totalExpenses = 0;
-        expenseInputs.forEach(input => {
-            totalExpenses += parseFloat(input.value);
+        const amountInputs = document.querySelectorAll("#expenses input[type='number']");
+        amountInputs.forEach(input => {
+            if (!isNaN(parseFloat(input.value))) {
+                totalExpenses += parseFloat(input.value);
+            }
         });
         alert(`Total Monthly Expenses: £${totalExpenses.toFixed(2)}`);
     }
 
+    // Function to calculate total savings
     function calculateTotalSavings() {
-        const emergencyFund = parseFloat(document.getElementById("emergencyFund").value);
-        alert(`Total Savings: £${emergencyFund.toFixed(2)}`);
-    }
-
-    function calculateTimeToSave() {
-        const monthlySavings = parseFloat(document.getElementById("monthlySavings").value);
-        const propertyCost = parseFloat(document.getElementById("propertyCost").value);
-        const propertyType = document.getElementById("propertyType").value;
-        const depositPercentage = propertyType === "residential" ? 0.1 : 0.2;
-        const depositAmount = propertyCost * depositPercentage;
-        const monthsToSave = depositAmount / monthlySavings;
-        const yearsToSave = monthsToSave / 12;
-        alert(`Months to Save for Deposit: ${monthsToSave.toFixed(2)} (${yearsToSave.toFixed(2)} years)`);
-    }
-
-    function fillBucket() {
-        const monthlySavingsBucket = parseFloat(document.getElementById("monthlySavingsBucket").value);
-        if (monthlySavingsBucket >= 0 && monthlySavingsBucket <= 100) {
-            bucketPercentage.textContent = `${monthlySavingsBucket.toFixed(2)}%`;
+        const emergencyFund = parseFloat(emergencyFundInput.value);
+        if (!isNaN(emergencyFund)) {
+            alert(`Total Savings Goal: £${emergencyFund.toFixed(2)}`);
         } else {
-            alert("Please enter a value between 0 and 100 for Monthly Savings.");
+            alert("Please enter a valid amount for the Emergency Fund.");
+        }
+    }
+
+    // Function to calculate time to save
+    function calculateTimeToSave() {
+        const monthlySavingsTarget = parseFloat(monthlySavingsTargetInput.value);
+        const propertyCost = parseFloat(propertyCostInput.value);
+        if (!isNaN(monthlySavingsTarget) && !isNaN(propertyCost)) {
+            const monthsToSave = Math.ceil(propertyCost / monthlySavingsTarget);
+            alert(`Months to Save for Dream Property: ${monthsToSave}`);
+        } else {
+            alert("Please enter valid amounts for Monthly Savings Target and Property Cost.");
+        }
+    }
+
+    // Function to fill the savings bucket
+    function fillBucket() {
+        const monthlySavings = parseFloat(monthlySavingsInput.value);
+        const bucketPercentage = parseFloat(bucketPercentageSpan.textContent);
+        if (!isNaN(monthlySavings) && !isNaN(bucketPercentage)) {
+            const newBucketPercentage = Math.min(bucketPercentage + monthlySavings, 100);
+            bucketPercentageSpan.textContent = newBucketPercentage.toFixed(2) + "%";
+        } else {
+            alert("Please enter a valid amount for Monthly Savings.");
         }
     }
 });
