@@ -2,68 +2,69 @@ body {
     font-family: Arial, sans-serif;
     background-color: #ffffff;
     color: #000000;
+    text-align: center;
 }
 
 .container {
     max-width: 800px;
     margin: 0 auto;
-    text-align: center;
+    padding: 20px;
 }
 
 .title {
     background-color: #000000;
     color: #ffffff;
+    padding: 10px;
+}
+
+.step-container {
+    margin-bottom: 20px;
+    border: 2px solid #000000;
+    border-radius: 10px;
     padding: 20px;
 }
 
-.steps {
+.step-heading {
+    font-size: 24px;
+}
+
+.step-description {
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.input-container {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
-.step {
-    margin: 20px;
-    padding: 20px;
-    border: 1px solid #000000;
-    background-color: #ffffff;
+.input-container label {
+    margin-bottom: 5px;
 }
 
-.step h2 {
-    margin-top: 0;
+.input-container input {
+    margin-bottom: 10px;
+    padding: 5px;
 }
 
-.step input[type="number"],
-.step input[type="text"],
-.step button {
-    margin: 5px;
-    padding: 8px;
-    font-size: 16px;
+.result {
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
-button {
-    background-color: #0000ff;
-    color: #ffffff;
-    border: none;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #000080;
-}
-
-table {
+#savingsTable {
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+    margin-bottom: 10px;
 }
 
-table th, table td {
+#savingsTable th, #savingsTable td {
     border: 1px solid #000000;
-    padding: 8px;
+    padding: 5px;
 }
 
-table th {
+#savingsTable th {
     background-color: #000000;
     color: #ffffff;
 }
