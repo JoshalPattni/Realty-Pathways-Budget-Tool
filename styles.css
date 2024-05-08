@@ -2,57 +2,44 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
     color: #333;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
     max-width: 800px;
-    margin: 0 auto;
+    margin: 20px auto;
     padding: 20px;
-}
-
-header {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.title {
-    color: #000;
-}
-
-.subtitle {
-    color: #000;
-}
-
-.step {
     background-color: #fff;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 8px;
+    border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.description {
-    font-size: 18px;
-    margin-bottom: 10px;
+h1, h2 {
+    text-align: center;
+}
+
+.step {
+    margin-bottom: 20px;
 }
 
 label {
-    font-weight: bold;
-    margin-right: 10px;
+    display: block;
+    margin-bottom: 5px;
 }
 
-input[type="number"] {
-    width: 100px;
-    padding: 5px;
+input[type="number"], input[type="text"] {
+    width: 100%;
+    padding: 10px;
     margin-bottom: 10px;
+    box-sizing: border-box;
 }
 
 button {
-    padding: 10px 20px;
     background-color: #007bff;
     color: #fff;
+    padding: 10px 20px;
     border: none;
-    border-radius: 4px;
     cursor: pointer;
 }
 
@@ -60,20 +47,32 @@ button:hover {
     background-color: #0056b3;
 }
 
-#expenseInputs {
-    margin-bottom: 20px;
+p {
+    margin-top: 10px;
 }
 
 .expense-input {
     display: flex;
-    margin-bottom: 10px;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .expense-input input {
-    flex: 1;
-    margin-right: 10px;
+    width: calc(50% - 5px);
 }
 
-.expense-input button {
-    margin-left: 10px;
+#bucket {
+    margin-top: 20px;
+    height: 20px;
+    width: 200px;
+    background-color: #ccc;
+    border-radius: 10px;
+    overflow: hidden;
 }
+
+#bucket .fill {
+    height: 100%;
+    width: 0;
+    background-color: #007bff;
+}
+
