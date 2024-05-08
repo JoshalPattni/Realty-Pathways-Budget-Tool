@@ -14,29 +14,32 @@
     <section id="budgetWorksheet">
         <h2>How Much Do You Spend in a Month?</h2>
         <p>Enter your monthly expenses below to calculate your total spending.</p>
-        <label for="expense1">Expense 1:</label>
-        <input type="text" id="expense1" placeholder="Expense description">
-        <input type="number" id="amount1" placeholder="Amount">
-        <label for="expense2">Expense 2:</label>
-        <input type="text" id="expense2" placeholder="Expense description">
-        <input type="number" id="amount2" placeholder="Amount">
-        <!-- Add more inputs as needed -->
+        <div id="expenses">
+            <div class="expense">
+                <input type="text" class="expense-description" placeholder="Expense description">
+                <input type="number" class="expense-amount" placeholder="Amount">
+            </div>
+            <!-- Additional expenses will be added dynamically here -->
+        </div>
+        <button onclick="addExpense()">Add Expense</button>
     </section>
     <section id="calculator">
         <h2>Budget Saving Calculator</h2>
         <p>Enter your monthly savings target to calculate how long it will take to afford your dream property.</p>
         <label for="savingsTarget">Monthly Savings Target (£):</label>
         <input type="number" id="savingsTarget" placeholder="Enter your savings target">
+        <label for="propertyCost">Property Cost (£):</label>
+        <input type="number" id="propertyCost" placeholder="Enter the cost of the property">
+        <label for="monthsToSave">Months to Save:</label>
+        <input type="number" id="monthsToSave" placeholder="Enter the number of months">
         <button onclick="calculateResults()">Calculate</button>
         <div id="output"></div>
     </section>
     <section id="summary">
         <h2>Summary</h2>
         <p>Based on your inputs, here are some tips to improve your budgeting:</p>
-        <ul>
-            <li>Track your expenses regularly to identify areas for saving.</li>
-            <li>Consider reducing discretionary spending on non-essential items.</li>
-            <li>Set specific savings goals and automate your savings to reach them faster.</li>
+        <ul id="tips">
+            <!-- Tips will be added dynamically here -->
         </ul>
     </section>
     <script src="script.js"></script>
