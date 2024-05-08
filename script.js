@@ -1,11 +1,10 @@
 document.addEventListener("DOMContentLoaded", function() {
     // Step 1: Calculate Monthly Income
-    const annualIncomeInput = document.getElementById("annualIncome");
     const calculateMonthlyIncomeButton = document.getElementById("calculateMonthlyIncome");
+    const annualIncomeInput = document.getElementById("annualIncome");
     const monthlyIncomeResult = document.getElementById("monthlyIncomeResult");
 
     // Step 2: Monthly Expenses
-    const expensesDiv = document.getElementById("expenses");
     const addExpenseButton = document.getElementById("addExpense");
     const calculateTotalExpensesButton = document.getElementById("calculateTotalExpenses");
     const totalExpensesResult = document.getElementById("totalExpensesResult");
@@ -22,10 +21,11 @@ document.addEventListener("DOMContentLoaded", function() {
     const calculateTimeToSaveButton = document.getElementById("calculateTimeToSave");
     const timeToSaveResult = document.getElementById("timeToSaveResult");
 
-    // Step 5: Savings Bucket
+    // Step 5: Savings Budget Tool
     const month1Input = document.getElementById("month1");
     const calculateBucketButton = document.getElementById("calculateBucket");
     const bucketStatus = document.getElementById("bucketStatus");
+    const savingsTable = document.getElementById("savingsTable").getElementsByTagName("tbody")[0];
 
     // Event listeners
     calculateMonthlyIncomeButton.addEventListener("click", calculateMonthlyIncome);
@@ -51,12 +51,14 @@ document.addEventListener("DOMContentLoaded", function() {
         const newExpenseInput = document.createElement("input");
         newExpenseInput.type = "text";
         newExpenseInput.placeholder = "Expense Name";
-        expensesDiv.appendChild(newExpenseInput);
-
         const newAmountInput = document.createElement("input");
         newAmountInput.type = "number";
         newAmountInput.placeholder = "Expense Amount (£)";
+        const br = document.createElement("br");
+        const expensesDiv = document.getElementById("expenses");
+        expensesDiv.appendChild(newExpenseInput);
         expensesDiv.appendChild(newAmountInput);
+        expensesDiv.appendChild(br);
     }
 
     // Function to calculate total expenses
@@ -103,14 +105,36 @@ document.addEventListener("DOMContentLoaded", function() {
             const monthsToSave = Math.ceil(depositAmount / monthlySavingsTarget);
             timeToSaveResult.textContent = `Months to Save for Deposit: ${monthsToSave}`;
         } else {
-            timeToSaveResult.textContent = "Please enter valid amounts for Monthly Savings Target and Property Cost.";
+            timeToSaveResult.textContent = "Please enter valid values.";
         }
     }
 
-    // Function to calculate the savings bucket
+    // Function to calculate bucket
     function calculateBucket() {
-        // Calculate savings progress and update the bucket status
-        // You can implement this part based on your desired bucket filling logic
+        const month1Savings = parseFloat(month1Input.value);
+        if (!isNaN(month1Savings)) {
+            // Calculate total savings each month and add to table
+            let totalSavings = month1Savings;
+            for (let i = 1; i <= 12; i++) {
+                const monthInput = document.getElementById(`month${i}`);
+                if (monthInput) {
+                    const savings = parseFloat(monthInput.value);
+                    if (!isNaN(savings)) {
+                        totalSavings += savings;
+                    }
+                }
+            }
+            // Calculate percentage of total savings
+            const propertyCost = parseFloat(propertyCostInput.value);
+            const residentialDeposit = propertyCost * 0.1;
+            const buyToLetDeposit = propertyCost * 0.2;
+            const depositAmount = confirm("Are you buying the property to live in?") ? residentialDeposit : buyToLetDeposit;
+            const bucketPercentage = (totalSavings / depositAmount) * 100;
+            // Display bucket status
+            bucketStatus.textContent = `Bucket filled: ${bucketPercentage.toFixed(2)}%`;
+        } else {
+            bucketStatus.textContent = "Please enter a valid savings amount for month 1.";
+        }
     }
 });
 
