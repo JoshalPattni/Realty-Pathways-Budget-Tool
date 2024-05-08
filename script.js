@@ -1,47 +1,52 @@
-let annualIncome = 0;
-let monthlyIncome = 0;
-let savingsTarget = 0;
-let propertyCost = 0;
+// JavaScript for Budget Saving Tool
 
-function calculateMonthlyIncome() {
-    annualIncome = parseInt(document.getElementById('annualIncome').value);
-    monthlyIncome = annualIncome / 12;
-    showStep(2);
+// Step 2: Add Expense
+function addExpense() {
+    const expensesList = document.getElementById('expensesList');
+    const expenseItem = document.createElement('div');
+    expenseItem.innerHTML = `
+        <label for="expenseName">Expense Name:</label>
+        <input type="text" name="expenseName">
+        <label for="expenseAmount">Expense Amount (£):</label>
+        <input type="number" name="expenseAmount">
+    `;
+    expensesList.appendChild(expenseItem);
 }
 
-function updateSavingsAmount() {
-    document.getElementById('savingsAmount').textContent = `Savings Target: £${savingsTarget}`;
-}
-
-function calculateYearsToSave() {
-    propertyCost = parseInt(document.getElementById('propertyCost').value);
-    const remainingAmount = propertyCost - savingsTarget;
-    const remainingMonths = Math.ceil(remainingAmount / monthlyIncome);
-    const years = Math.floor(remainingMonths / 12);
-    const months = remainingMonths % 12;
-    document.getElementById('yearsToSave').textContent = `Years: ${years}, Months: ${months}`;
-    showStep(4);
-}
-
-function fillBucket() {
-    const monthlySavings = parseInt(document.getElementById('monthlySavings').value);
-    const totalMonths = Math.ceil((propertyCost - savingsTarget) / monthlySavings);
-    const fillPercentage = ((totalMonths - remainingMonths) / totalMonths) * 100;
-    document.getElementById('bucket').style.height = `${fillPercentage}%`;
-    document.getElementById('bucketStatus').textContent = `Bucket filled ${fillPercentage.toFixed(2)}%`;
-}
-
-function showStep(step) {
-    const steps = document.querySelectorAll('.step');
-    steps.forEach(s => s.style.display = 'none');
-    document.getElementById(`step${step}`).style.display = 'block';
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    const rangeInput = document.getElementById('savingsTarget');
-    rangeInput.addEventListener('input', () => {
-        savingsTarget = parseInt(rangeInput.value);
-        updateSavingsAmount();
+// Step 2: Calculate Total Expenses
+function calculateTotalExpenses() {
+    const expenseInputs = document.querySelectorAll('#expensesList input[type="number"]');
+    let totalExpenses = 0;
+    expenseInputs.forEach(input => {
+        totalExpenses += parseFloat(input.value) || 0;
     });
-    updateSavingsAmount();
-});
+    alert(`Total Monthly Expenses: £${totalExpenses.toFixed(2)}`);
+}
+
+// Step 3: Calculate Total Savings
+function calculateTotalSavings() {
+    const emergencyFund = parseFloat(document.getElementById('emergencyFund').value) || 0;
+    alert(`Total Savings Goal: £${emergencyFund.toFixed(2)}`);
+}
+
+// Step 4: Calculate Time to Save
+function calculateSavingsTime() {
+    const savingsTarget = parseFloat(document.getElementById('savingsTarget').value) || 0;
+    const propertyCost = parseFloat(document.getElementById('propertyCost').value) || 0;
+    const monthsToSave = propertyCost / savingsTarget;
+    const yearsToSave = monthsToSave / 12;
+    alert(`Months to Save for Dream Property: ${monthsToSave.toFixed(2)} months (${yearsToSave.toFixed(2)} years)`);
+}
+
+// Step 6: Fill Savings Bucket
+function fillBucket() {
+    const bucket = document.getElementById('bucket');
+    const monthlySavings = parseFloat(document.getElementById('monthlySavings').value) || 0;
+    let bucketFillPercentage = monthlySavings / 100;
+    if (bucketFillPercentage > 1) {
+        bucketFillPercentage = 1;
+    }
+    bucket.style.height = `${bucketFillPercentage * 100}%`;
+    document.getElementById('bucketStatus').innerText = `Bucket filled: ${(bucketFillPercentage * 100).toFixed(2)}%`;
+}
+
