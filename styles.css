@@ -19,10 +19,17 @@ h1 {
 
 main {
     padding: 20px;
+    text-align: center;
 }
 
 .step {
     margin-bottom: 40px;
+    text-align: left;
+    display: inline-block;
+}
+
+p {
+    text-align: left;
 }
 
 label {
@@ -53,8 +60,4 @@ button:hover {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
-}
-
-#expenses input {
-    width: 100%;
 }
